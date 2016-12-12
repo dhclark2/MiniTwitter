@@ -6,7 +6,6 @@ class TweetsController < ApplicationController
 
   # GET /tweets/1
   def show
-    redirect_to tweets_path
     @tweet = Tweet.find(params[:id])
   end
 
@@ -25,7 +24,7 @@ class TweetsController < ApplicationController
     @tweet = Tweet.new(tweet_params)
 
     if @tweet.save
-      redirect_to @tweet, notice: 'Tweet was successfully created.'
+      redirect_to tweets_path, notice: 'Tweet was successfully created.'
     else
       render :new
     end
