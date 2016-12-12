@@ -1,0 +1,38 @@
+.page-header
+  = link_to new_tweet_path, class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-plus
+    New Tweet
+  %h1 Listing tweets
+
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th #
+        %th Good or Bad?
+        %th Tweet
+        %th User name
+        %th Posted
+        %th{:colspan => 3} Options
+
+    %tbody
+      - @tweets.each_with_index do |tweet, index|
+        %tr
+          %td
+            = index + 1
+          %td
+            %i.fa.fa-thumbs-up{"aria-hidden" => "true"}
+            %i.fa.fa-thumbs-down{"aria-hidden" => "true"}
+          %td= link_to tweet.tweet, tweet.link
+          %td= tweet.user_name
+          %td= tweet.created_at
+
+          %td
+            = link_to tweet do
+              %span.glyphicon.glyphicon-ok
+          %td
+            = link_to edit_tweet_path(tweet) do
+              %span.glyphicon.glyphicon-pencil
+          %td
+            = link_to tweet, data: { confirm: 'Are you sure?' }, method: :delete do
+              %span.glyphicon.glyphicon-remove

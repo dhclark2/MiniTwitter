@@ -30,7 +30,10 @@
         #navbar.collapse.navbar-collapse
           %ul.nav.navbar-nav
             %li.active
-              = link_to "Home", "#"
+              = link_to "Home", root_path
+            %li
+              = link_to new_tweet_path do
+                New Tweet
     .container
       - flash.each do |name, msg|
         = content_tag :div, class: "alert alert-#{name == :error ? "danger" : "success" } alert-dismissable", role: "alert" do
